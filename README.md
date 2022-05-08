@@ -20,6 +20,15 @@ Took some time in setting up eslint and figuring out prettier errors.
 Application deployed on AWS Amplify with CI/CD
 [Deployment Link](https://master.dwoslksb07k9.amplifyapp.com/)
 
+## Loom video Link
+[Video Link](https://www.loom.com/share/a99b0878dce94dc582b58ebe3847c8d6)
+
+## Tech Stack used
+1. React with functional components and using advanced hooks like useCallback.
+2. Ant Design for cards and toaster.
+3. ESLint for linting.
+4. Prettier for code formatting.
+
 ## Additional Points
 Next steps after this would have been implmentation of unit tests using the cypress framework and dockerizing the application.
 
