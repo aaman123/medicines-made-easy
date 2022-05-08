@@ -3,9 +3,9 @@ import { Medicines } from '../../constants/medicines'
 import { Medicine } from '../../interfaces/Medicine'
 import Search from '../Search'
 import styles from './Dashboard.module.css'
-import { Card, Button } from 'antd'
-import { EffectivenessRater, EffectsRater } from '../Rater'
+import { Button } from 'antd'
 import { addMedicineMessage, removeMedicineMessage } from '../../utils/helpers'
+import MedicineCard from '../Card'
 
 const Dashboard = () => {
   const [medicines, setMedicines] = useState<Medicine[]>([])
@@ -57,47 +57,28 @@ const Dashboard = () => {
           showCabinet
             ? (medicines.map((medicine: Medicine) => {
                 return medicine.addToCabinet === true &&
-                  <Card key={medicine.id} className={styles.card} style={{ height: 350 }}>
-                    <h2>{medicine.name}</h2>
-                    <textarea onChange={(e) => {
-                      medicine.note = e.target.value
-                    }} />
-                    <div className={styles.ratingContainer}>
-                      <p>Side Effects: </p>
-                      <EffectsRater medicine={medicine}/>
-                    </div>
-                    <div className={styles.ratingContainer}>
-                      <p>Effectiveness: </p>
-                      <EffectivenessRater medicine={medicine}/>
-                    </div>
-                    <h3><i className={styles.medicineNote}>{medicine.note}</i></h3>
-                    <Button type='primary' onClick={() => {
-                      medicine.addToCabinet = false
-                      removeMedicineMessage()
-                      setShowCabinet(false)
-                    }}>Remove from Cabinet</Button>
-                  </Card>
+                <MedicineCard
+                  key={medicine.id}
+                  medicine={medicine}
+                  setShowCabinet={setShowCabinet}
+                  showToaster={() => { removeMedicineMessage() }}
+                  message={'Remove from Cabinet'}
+                  showCabinet={false}
+                />
               }
               ))
             /* eslint-disable operator-linebreak */
             :
               (onNameFilter().map((medicine: Medicine) => {
                 return (
-                  <Card key={medicine.id} className={styles.card}>
-                    <h2>{medicine.name}</h2>
-                    <div className={styles.ratingContainer}>
-                      <p>Side Effects: </p>
-                      <EffectsRater medicine={medicine}/>
-                    </div>
-                    <div className={styles.ratingContainer}>
-                      <p>Effectiveness: </p>
-                      <EffectivenessRater medicine={medicine}/>
-                    </div>
-                    <Button type='primary' onClick={() => {
-                      medicine.addToCabinet = true
-                      addMedicineMessage()
-                    }}>Add to Cabinet</Button>
-                  </Card>
+                  <MedicineCard
+                    key={medicine.id}
+                    medicine={medicine}
+                    setShowCabinet={setShowCabinet}
+                    showToaster={() => { addMedicineMessage() }}
+                    message={'Add to Cabinet'}
+                    showCabinet={true}
+                  />
                 )
               })
               )
