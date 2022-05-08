@@ -1,0 +1,19 @@
+.container {
+  width: 80%;
+  margin: auto;
+  padding: 50px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+}
