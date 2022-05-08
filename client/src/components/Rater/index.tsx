@@ -6,6 +6,8 @@ interface RaterProps {
   medicine: Medicine
 }
 
+/* Component for managing rating for medicines */
+
 const EffectsRater = ({ medicine }: RaterProps) => {
   const [value, setValue] = useState<number | undefined>(medicine.effects)
 

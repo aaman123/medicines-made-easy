@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { Button } from 'antd'
+
+import Search from '../Search'
+import MedicineCard from '../Card'
 import { Medicines } from '../../constants/medicines'
 import { Medicine } from '../../interfaces/Medicine'
-import Search from '../Search'
-import styles from './Dashboard.module.css'
-import { Button } from 'antd'
 import { addMedicineMessage, removeMedicineMessage } from '../../utils/helpers'
-import MedicineCard from '../Card'
+
+import styles from './Dashboard.module.css'
 
 const Dashboard = () => {
   const [medicines, setMedicines] = useState<Medicine[]>([])
@@ -16,6 +18,7 @@ const Dashboard = () => {
     setMedicines(Medicines)
   })
 
+  /* Handler for searching medicines based on name */
   const onNameFilter = () => {
     return medicines.filter((medicine: Medicine) => {
       return (
@@ -24,6 +27,7 @@ const Dashboard = () => {
     })
   }
 
+  /* Handler for sorting medicines based on side-effects and effectiveness */
   const sortBy = useCallback((sortParam: string) => {
     let sortedMedicines = []
     if (sortParam === 'effectiveness') {

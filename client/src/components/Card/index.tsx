@@ -1,7 +1,11 @@
-import { Button, Card } from 'antd'
 import React, { useState } from 'react'
+
+import { Button, Card } from 'antd'
+
 import { Medicine } from '../../interfaces/Medicine'
+import { addNoteMessage } from '../../utils/helpers'
 import { EffectivenessRater, EffectsRater } from '../Rater'
+
 import styles from './Card.module.css'
 
 interface CardProps {
@@ -15,11 +19,13 @@ interface CardProps {
 const MedicineCard = ({ medicine, setShowCabinet, showToaster, message, showCabinet }: CardProps) => {
   const [addNote, setAddNote] = useState<boolean>(false)
 
+  /* Handler for adding notes to medicines */
   const handleNote = (e: React.KeyboardEvent<HTMLTextAreaElement>, medicine: Medicine) => {
     if (e.key === 'Enter') {
       const target = e.target as HTMLTextAreaElement
       medicine.note = target.value
       target.value = ''
+      addNoteMessage()
       setAddNote(!addNote)
     }
   }
